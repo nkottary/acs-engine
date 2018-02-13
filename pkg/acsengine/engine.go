@@ -708,6 +708,9 @@ func getParameters(cs *api.ContainerService, isClassicMode bool, generatorCode s
 	if strings.HasPrefix(properties.OrchestratorProfile.OrchestratorType, api.DCOS) {
 		dcosBootstrapURL := cloudSpecConfig.DCOSSpecConfig.DCOS188BootstrapDownloadURL
 		dcosWindowsBootstrapURL := cloudSpecConfig.DCOSSpecConfig.DCOSWindowsBootstrapDownloadURL
+		dcosRepositoryURL := cloudSpecConfig.DCOSSpecConfig.DcosRepositoryURL
+		dcosClusterPackageListID := cloudSpecConfig.DCOSSpecConfig.DcosClusterPackageListID
+
 		switch properties.OrchestratorProfile.OrchestratorType {
 		case api.DCOS:
 			switch properties.OrchestratorProfile.OrchestratorVersion {
@@ -727,10 +730,18 @@ func getParameters(cs *api.ContainerService, isClassicMode bool, generatorCode s
 			if properties.OrchestratorProfile.DcosConfig.DcosBootstrapURL != "" {
 				dcosBootstrapURL = properties.OrchestratorProfile.DcosConfig.DcosBootstrapURL
 			}
+			if properties.OrchestratorProfile.DcosConfig.DcosRepositoryURL != "" {
+				dcosRepositoryURL = properties.OrchestratorProfile.DcosConfig.DcosRepositoryURL
+			}
+			if properties.OrchestratorProfile.DcosConfig.DcosClusterPackageListID != "" {
+				dcosClusterPackageListID = properties.OrchestratorProfile.DcosConfig.DcosClusterPackageListID
+			}
 		}
 
 		addValue(parametersMap, "dcosBootstrapURL", dcosBootstrapURL)
 		addValue(parametersMap, "dcosWindowsBootstrapURL", dcosWindowsBootstrapURL)
+		addValue(parametersMap, "dcosRepositoryURL", dcosRepositoryURL)
+		addValue(parametersMap, "dcosClusterPackageListID", dcosClusterPackageListID)
 	}
 
 	// Agent parameters
