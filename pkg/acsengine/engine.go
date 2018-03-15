@@ -744,10 +744,10 @@ func getParameters(cs *api.ContainerService, isClassicMode bool, generatorCode s
 				dcosProviderPackageID = properties.OrchestratorProfile.DcosConfig.DcosProviderPackageID
 			} else {
 				dcosProviderPackageID = getDefaultProviderPackageGUID(
-                                           properties.OrchestratorProfile.OrchestratorType,
-                                           properties.OrchestratorProfile.OrchestratorVersion,
-                                           properties.MasterProfile.Count)
-            }
+					properties.OrchestratorProfile.OrchestratorType,
+					properties.OrchestratorProfile.OrchestratorVersion,
+					properties.MasterProfile.Count)
+			}
 		}
 
 		addValue(parametersMap, "dcosBootstrapURL", dcosBootstrapURL)
