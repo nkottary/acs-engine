@@ -121,15 +121,11 @@ runcmd: PREPROVISION_EXTENSION
   - dcos-setup.service
 - /opt/azure/containers/add_admin_to_docker_group.sh
 write_files:
-- content: '{{{dcosRepositoryURL}}}
-
-'
+- content: '{{{dcosRepositoryURL}}}'
   owner: root
   path: /etc/mesosphere/setup-flags/repository-url
   permissions: '0644'
-- content: '{{{dcosClusterPackageListID}}}
-
-'
+- content: '{{{dcosClusterPackageListID}}}'
   owner: root
   path: /etc/mesosphere/setup-flags/cluster-package-list
   permissions: '0644'

@@ -39,8 +39,9 @@ type DCOSSpecConfig struct {
 	DCOS110BootstrapDownloadURL     string
 	DCOS111BootstrapDownloadURL     string
 	DCOSWindowsBootstrapDownloadURL string
-	DcosRepositoryURL               string
-	DcosClusterPackageListID        string
+	DcosRepositoryURL               string // For custom install, for example CI, need these three addributes
+	DcosClusterPackageListID        string // the id of the package list file
+	DcosProviderPackageID           string // the id of the dcos-provider-xxx package
 }
 
 //KubernetesSpecConfig is the kubernetes container images used.

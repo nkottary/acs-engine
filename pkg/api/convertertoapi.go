@@ -589,6 +589,7 @@ func convertVLabsDcosConfig(vlabs *vlabs.DcosConfig, api *DcosConfig) {
 	api.DcosWindowsBootstrapURL = vlabs.DcosWindowsBootstrapURL
 	api.DcosRepositoryURL = vlabs.DcosRepositoryURL
 	api.DcosClusterPackageListID = vlabs.DcosClusterPackageListID
+	api.DcosProviderPackageID = vlabs.DcosProviderPackageID
 }
 
 func convertVLabsKubernetesConfig(vlabs *vlabs.KubernetesConfig, api *KubernetesConfig) {

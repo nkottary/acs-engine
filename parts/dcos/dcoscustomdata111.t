@@ -159,14 +159,13 @@ runcmd: PREPROVISION_EXTENSION
   - start
   - dcos-setup.service
 write_files:
-- content: 'https://dcosio.azureedge.net/dcos/stable/1.11.0
-
+- content: '{{{dcosRepositoryURL}}}
 '
   owner: root
   path: /etc/mesosphere/setup-flags/repository-url
   permissions: '0644'
 - content: |-
-        ', if(equals(variables('masterCount'), 1), 'eee6337ea89c74ba58986406d24e373bdeae8012', if(equals(variables('masterCount'), 3), '248a66388bba1adbcb14a52fd3b7b424ab06fa76', if(equals(variables('masterCount'), 5), '302987609a34f07c206da1791c5a553141416ad8', 'noMasterMatch'))), '
+- content: '{{{dcosClusterPackageListID}}}'
   owner: root
   path: /etc/mesosphere/setup-flags/cluster-package-list
   permissions: '0644'
@@ -252,7 +251,7 @@ write_files:
       "oauth_enabled": |-
         {{{oauthEnabled}}}
     "late_bound_package_id": |-
-      dcos-provider-DCOSGUID-azure--setup
+      dcos-provider-{{{dcosProviderPackageID}}}-azure--setup
   owner: root
   path: /etc/mesosphere/setup-flags/late-config.yaml
   permissions: '0644'
@@ -277,7 +276,7 @@ write_files:
     Type=oneshot
     StandardOutput=journal+console
     StandardError=journal+console
-    ExecStartPre=/usr/bin/curl --keepalive-time 2 -fLsSv --retry 20 -Y 100000 -y 60 -o //var/tmp/bootstrap.tar.xz https://dcosio.azureedge.net/dcos/stable/1.11.0/bootstrap/a0654657903fb68dff60f6e522a7f241c1bfbf0f.bootstrap.tar.xz
+    ExecStartPre=/usr/bin/curl --keepalive-time 2 -fLsSv --retry 20 -Y 100000 -y 60 -o //var/tmp/bootstrap.tar.xz {{{dcosBootstrapURL}}}
     ExecStartPre=/usr/bin/mkdir -p /opt/mesosphere
     ExecStart=/usr/bin/tar -axf //var/tmp/bootstrap.tar.xz -C /opt/mesosphere
     ExecStartPost=-/usr/bin/rm -f //var/tmp/bootstrap.tar.xz
